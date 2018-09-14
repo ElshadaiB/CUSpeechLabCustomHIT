@@ -1,0 +1,77 @@
+::ng-deep body {
+  width: 95%;
+}
+::ng-deep textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+::ng-deep label {
+  font-family: Futura;
+  font-weight: bold;
+  margin-top: 8px;
+}
+::ng-deep audio {
+  padding: 30px;
+}
+.panel{
+  width: 100%;
+  border-style: solid;
+  border-color: #669ed2;
+  border-radius: 10px;
+  font-family: "Times New Roman";
+}
+.panel-heading {
+  background-color: #669ed2;
+  height: 30px;
+  color: white;
+  padding-top: 10px;
+  padding-left: 5px;
+}
+.panel-body {
+  padding: 15px;
+}
+::ng-deep .pairwise-container {
+  alignment: center;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+  margin: 10px;
+  font-family: Futura;
+  font-weight: bold;
+  height: 150px;
+  padding: 5px;
+}
+::ng-deep .audio1{
+  margin: 0px;
+  float: left;
+  height: 20px;
+}
+
+::ng-deep .audio2{
+  margin: 0px;
+  float: right;
+  height: 20px;
+}
+
+::ng-deep .selector {
+  margin-top: 0px;
+  padding-top: 0px;
+  padding-bottom: 30px;
+}
+
+::ng-deep form {
+}
+
+::ng-deep radio {
+  padding: 20px;
+  font-family: Futura;
+}
+
+::ng-deep form label {
+  padding: 10px;
+}

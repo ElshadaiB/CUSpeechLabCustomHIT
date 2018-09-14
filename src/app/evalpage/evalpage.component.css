@@ -1,0 +1,39 @@
+::ng-deep body {
+  width: 95%;
+  alignment: center;
+}
+::ng-deep textarea {
+  width: 100%;
+  height: 150px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  resize: none;
+}
+::ng-deep label {
+  font-family: "Times New Roman";
+  font-weight: bold;
+  margin-top: 8px;
+}
+::ng-deep audio {
+  padding: 30px 0px;
+}
+.panel{
+  width: 100%;
+  border-style: solid;
+  border-color: #669ed2;
+  border-radius: 10px;
+  font-family: "Times New Roman";
+}
+.panel-heading {
+    background-color: #669ed2;
+    height: 30px;
+    color: white;
+    padding-top: 10px;
+    padding-left: 5px;
+}
+.panel-body {
+  padding: 15px;
+}
