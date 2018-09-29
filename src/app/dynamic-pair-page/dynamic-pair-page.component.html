@@ -1,0 +1,18 @@
+<div *ngIf="form">
+  <form (ngSubmit)="onSubmit()" [formGroup]="form">
+
+    <div *ngFor="let question of questions" class="form-row">
+      <audio [src]="question.src[0]" controls=false controlsList="nodownload" type="audio/wav"></audio>
+      <audio [src]="question.src[1]" controls=false controlsList="nodownload" type="audio/wav"></audio>
+      <app-dynamic-pair-form-question [question]="question" [form]="form"></app-dynamic-pair-form-question>
+    </div>
+
+    <div class="form-row">
+      <button type="submit" [disabled]="!form.valid">Save</button>
+    </div>
+  </form>
+
+  <div *ngIf="payLoad" class="form-row">
+    <strong>Saved the following values</strong><br>{{payLoad}}
+  </div>
+</div>

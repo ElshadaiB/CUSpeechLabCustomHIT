@@ -1,0 +1,9 @@
+<div [formGroup]="form">
+  <label [attr.for]="question.key">{{question.label}}</label>
+  <div [ngSwitch]="question.controlType">
+    <div *ngSwitchCase="'radio'" [formControlName]="question.key" [id]="question.key">
+      <input type="radio" value="VoiceA"> Voice A <br>
+      <input type="radio" value="VoiceB"> Voice B <br>
+    </div>
+  </div>
+</div>

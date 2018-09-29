@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import {IntellEval} from '../providers/intell-eval';
+import {Transcription} from '../providers/transcription';
+import {ActivatedRoute, Router} from '@angular/router';
+import {HttpClient} from '@angular/common/http';
+import {AfService} from '../providers/af.service';
+import {PairEval} from '../providers/pair-eval';
 
 @Component({
   selector: 'app-pairwisepage',
@@ -7,13 +13,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PairwisepageComponent implements OnInit {
 
-  constructor() { }
+  model: PairEval;
+  pairs_urls: string[][];
+  private batchURL: string;
+  constructor(private router: Router, private route: ActivatedRoute, private httpClient: HttpClient, private af: AfService) {
+    this.batchURL = this.route.snapshot.queryParams['task'];
+    this.model = new PairEval('', 'Amharic Intelligibility Evaluations', this.af.getUserId(), this.af.getUserEmail(), []);
+    console.log(this.batchURL);
+    let pairs = new Array();
+    this.httpClient.get('assets/' + this.batchURL).subscribe(result => {
+      this.model.HIT_ID = result['taskID'];
+      const count = result['count'];
+      for (let i = 0; i < count; i++) {
+        const audios = result['links'][i];
+        console.log(audios);
+        pairs.push(audios);
+      }
+      console.log(pairs);
+      console.log(JSON.stringify(this.model));
+      this.pairs_urls = pairs;
+    });
+  }
 
   ngOnInit() {
-    this.addAudios('http://localhost/WebAudioEvaluationTool-master/media/example/0.wav',
-      'http://cheshire.cs.columbia.edu/amt/71/sus_001.wav');
-    this.addAudios('http://localhost/WebAudioEvaluationTool-master/media/example/0.wav',
-      'http://cheshire.cs.columbia.edu/amt/71/sus_001.wav');
+    //this.addAudios('http://localhost/WebAudioEvaluationTool-master/media/example/0.wav',
+    //  'http://cheshire.cs.columbia.edu/amt/71/sus_001.wav');
+    //this.addAudios('http://localhost/WebAudioEvaluationTool-master/media/example/0.wav',
+     // 'http://cheshire.cs.columbia.edu/amt/71/sus_001.wav');
   }
 
   addAudios(url1: string, url2: string): void {

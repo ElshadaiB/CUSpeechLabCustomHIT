@@ -49,7 +49,7 @@ export class AfService {
     const data: User = {
       uid: user.uid,
       email: user.email,
-      batches: ['one', 'two'],
+      batches: ['o', 't'],
       roles: {
         worker: true,
         admin: false
@@ -62,6 +62,12 @@ export class AfService {
       this.authState = auth;
       auth === null ? console.log('unsigned') : console.log('signed');
     });
+  }
+  getUserId() {
+    return this.afAuth.auth.currentUser.uid;
+  }
+  getUserEmail() {
+    return this.afAuth.auth.currentUser.email;
   }
 }
 

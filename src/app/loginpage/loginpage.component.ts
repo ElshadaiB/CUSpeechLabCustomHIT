@@ -13,6 +13,7 @@ export class LoginpageComponent implements OnInit {
 
   ngOnInit() {
     this.AfService.logout();
+    console.log(this.route.snapshot.queryParams);
     console.log(this.route.snapshot.queryParams['returnUrl']);
     if (this.route.snapshot.queryParams['returnUrl'] === undefined) {
       this.returnUrl = '/';

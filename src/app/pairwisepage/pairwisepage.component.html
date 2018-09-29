@@ -8,3 +8,6 @@
     </ul>
   </div>
 </div>
+<div *ngIf="pairs_urls">
+<app-pair-eval-form [model]="model" [pairs]="pairs_urls"></app-pair-eval-form>
+</div>
