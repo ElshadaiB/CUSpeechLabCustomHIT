@@ -18,6 +18,7 @@ export class EvalpageComponent implements OnInit {
   car: string;
   transcriptions: Transcription[];
   constructor(private router: Router, private route: ActivatedRoute, private httpClient: HttpClient, private af: AfService) {
+    console.log('CONSTRUCTOR OF EVALPAGE')
     this.batchURL = this.route.snapshot.queryParams['batch'];
     this.model = new IntellEval('', '', 'Amharic Intelligibility Evaluations', this.af.getUserId(), this.af.getUserEmail(), []);
     console.log(this.batchURL);
@@ -36,9 +37,12 @@ export class EvalpageComponent implements OnInit {
       console.log(result['links']);
       console.log(JSON.stringify(this.model));
     });
+    console.log('END OF CONSTRUCTOR OF EVALPAGE');
+    this.ngOnInit();
   }
 
   ngOnInit() {
+    console.log('NG ON INITIALIZATION');
     if (this.stranscriptions !== undefined) {
       console.log('true');
       console.log(this.stranscriptions);

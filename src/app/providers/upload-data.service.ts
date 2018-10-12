@@ -26,7 +26,7 @@ export class UploadDataService {
         resolve(data);
       });
     });
-    let user = await promise;
+    const user = await promise;
     console.log('the user');
     console.log(user);
     const evalID = evaluation.HIT_ID + evaluation.workerID;
@@ -39,9 +39,26 @@ export class UploadDataService {
       workerEmail: evaluation.workerEmail,
       transcriptions: JSON.stringify(evaluation.transcriptions)
     }
-    user.batches.push(ievaluation.batchID);
-    const userRef: AngularFirestoreDocument<any> = this.afs.doc('users/' + ievaluation.workerID);
-    userRef.set(user, {merge: true});
+    if (user) {
+      user.batches.push(ievaluation.batchID);
+      const userRef: AngularFirestoreDocument<any> = this.afs.doc('users/' + ievaluation.workerID);
+      userRef.set(user, {merge: true});
+      evalRef.set(ievaluation, {merge: true});
+    }
+  }
+  async addPairEval(evaluation) {
+    console.log('In addEval');
+    console.log(evaluation);
+    const evalID = evaluation.HIT_ID + evaluation.workerID;
+    const evalRef: AngularFirestoreDocument<any> = this.afs.doc('pairEvals/' + evalID);
+    const ievaluation = {
+      HIT_ID: evaluation.HIT_ID,
+      title: evaluation.title,
+      workerID: evaluation.workerID,
+      workerEmail: evaluation.workerEmail,
+      pairEvals: JSON.stringify(evaluation.pairEvals)
+    }
+    console.log(ievaluation);
     evalRef.set(ievaluation, {merge: true});
   }
 }

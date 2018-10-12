@@ -7,6 +7,7 @@ import {AfService} from '../providers/af.service';
 import {PairEval} from '../providers/pair-eval';
 import {PairComparison} from '../providers/pair-comparison';
 import {Transcription} from '../providers/transcription';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-dynamic-pair-page',
@@ -20,7 +21,7 @@ export class DynamicPairPageComponent implements OnInit {
   form: FormGroup;
   payLoad = '';
   comparisons: PairComparison[] = new Array();
-  constructor(private qcs: QuestionControlService, private ups: UploadDataService, private afs: AfService) {
+  constructor(private qcs: QuestionControlService, private ups: UploadDataService, private afs: AfService, private router: Router) {
   }
   ngOnInit() {
     console.log('printing questions');
@@ -32,17 +33,19 @@ export class DynamicPairPageComponent implements OnInit {
   onSubmit() {
     this.payLoad = JSON.stringify(this.form.value);
     const results = this.form.value;
-   /* Object.keys(results).forEach(key => {
+    Object.keys(results).forEach(key => {
       console.log(key);
       console.log(results[key]);
-      const t = new Transcription(key, results[key]);
+      const src = this.questions[key].src;
+      console.log(src);
+      const t = new PairComparison(src[0], src[1], results[key]);
       console.log(t);
-      this.transcriptions.push(t);
+      this.comparisons.push(t);
     });
-    */
-    //console.log(JSON.stringify(this.transcriptions));
-    //this.model.transcriptions = this.transcriptions;
-    //console.log(this.model);
-    //this.ups.addEval(this.model);
+    console.log(JSON.stringify(this.comparisons));
+    this.model.pairEvals = this.comparisons;
+    console.log(this.model);
+    this.ups.addPairEval(this.model);
+    this.router.navigate(['/thankyou']);
   }
 }

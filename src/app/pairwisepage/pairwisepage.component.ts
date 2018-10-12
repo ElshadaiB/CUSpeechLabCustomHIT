@@ -18,7 +18,7 @@ export class PairwisepageComponent implements OnInit {
   private batchURL: string;
   constructor(private router: Router, private route: ActivatedRoute, private httpClient: HttpClient, private af: AfService) {
     this.batchURL = this.route.snapshot.queryParams['task'];
-    this.model = new PairEval('', 'Amharic Intelligibility Evaluations', this.af.getUserId(), this.af.getUserEmail(), []);
+    this.model = new PairEval('', 'Amharic Pairwise Evaluations', this.af.getUserId(), this.af.getUserEmail(), []);
     console.log(this.batchURL);
     let pairs = new Array();
     this.httpClient.get('assets/' + this.batchURL).subscribe(result => {

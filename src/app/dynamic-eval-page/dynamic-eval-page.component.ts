@@ -6,6 +6,8 @@ import {UploadDataService} from '../providers/upload-data.service';
 import {AfService} from '../providers/af.service';
 import {Transcription} from '../providers/transcription';
 import {IntellEval} from '../providers/intell-eval';
+import {Router} from '@angular/router';
+import {TextboxQuestion} from '../providers/textbox-question';
 
 @Component({
   selector: 'app-dynamic-eval-page',
@@ -14,20 +16,33 @@ import {IntellEval} from '../providers/intell-eval';
   providers: [QuestionControlService]
 })
 export class DynamicEvalPageComponent implements OnInit, OnChanges {
-  @Input() questions: QuestionBase<any>[] = [];
+  @Input() questions: QuestionBase<TextboxQuestion>[] = [];
   @Input() model: IntellEval;
   form: FormGroup;
   payLoad = '';
+  audioCount = {};
   transcriptions: Transcription[] = new Array();
-  constructor(private qcs: QuestionControlService, private ups: UploadDataService, private afs: AfService) { }
+  audDOMs: NodeListOf<HTMLAudioElement>;
+  constructor(private qcs: QuestionControlService, private ups: UploadDataService, private afs: AfService, private router: Router) {}
   ngOnInit() {
     console.log('in dynamic eval page');
-    console.log(this.questions.toString());
+    console.log(this.questions);
+    //
     this.form = this.qcs.toFormGroup(this.questions);
     console.log('Printing form group');
     console.log(this.form.value);
+    //
+    this.questions.forEach(value => {
+      this.audioCount[value.src] = 0;
+    });
+    //
+    console.log(this.audioCount);
+    for (const key in this.audioCount) {}
+    //
+    console.log('Printing DOM elements');
+    console.log(this.audDOMs);
+    //
     this.onChanges();
-     // this.form.setValue({'http://cheshire.cs.columbia.edu/amt/71/sus_001.wav': 'h'});
   }
   onSubmit() {
     this.payLoad = JSON.stringify(this.form.value);
@@ -43,24 +58,32 @@ export class DynamicEvalPageComponent implements OnInit, OnChanges {
     this.model.transcriptions = this.transcriptions;
     console.log(this.model);
     this.ups.addEval(this.model);
+    this.router.navigate(['/thankyou']);
   }
   ngOnChanges() {
     this.onChanges();
   }
+  play(event) {
+    const audioID = event.target.id;
+    console.log(audioID);
+    this.audioCount[audioID] += 1;
+    console.log(this.audioCount[audioID]);
+    const domEl = document.getElementById(audioID);
+    console.log(domEl);
+    if (this.audioCount[audioID] === 3) {
+      domEl.setAttribute('src', '');
+    }
+  }
   onChanges() {
-    let k;
-    console.log('onChanges!');
     if (this.form !== undefined) {
       this.form.valueChanges.forEach(value => {
         console.log(value);
         Object.keys(value).forEach(key => {
           console.log(key);
-          k = key;
           console.log(this.form.controls[key]);
           let j = this.form.controls[key].value;
           console.log(j);
           this.form.controls[key].setValue(this.transcrire(j), {'onlySelf': true});
-          //this.form.setValue({key: 'kkkkk'});
         });
       });
     }

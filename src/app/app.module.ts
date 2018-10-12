@@ -24,6 +24,8 @@ import {IntellEvalFormComponent} from './intellevalform/intell-eval-form.compone
 import { DynamicPairPageComponent } from './dynamic-pair-page/dynamic-pair-page.component';
 import { DynamicPairFormQuestionComponent } from './dynamic-pair-form-question/dynamic-pair-form-question.component';
 import { PairEvalFormComponent } from './pair-eval-form/pair-eval-form.component';
+import { NoAccessComponent } from './no-access/no-access.component';
+import { ThankYouComponent } from './thank-you/thank-you.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { PairEvalFormComponent } from './pair-eval-form/pair-eval-form.component
     IntellEvalFormComponent,
     DynamicPairPageComponent,
     DynamicPairFormQuestionComponent,
-    PairEvalFormComponent
+    PairEvalFormComponent,
+    NoAccessComponent,
+    ThankYouComponent
   ],
   imports: [
     BrowserModule,

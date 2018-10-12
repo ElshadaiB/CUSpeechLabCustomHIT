@@ -2,7 +2,7 @@
   <form (ngSubmit)="onSubmit()" [formGroup]="form">
 
     <div *ngFor="let question of questions" class="form-row">
-      <audio [src]="question.src" controls=false controlsList="nodownload" type="audio/wav"></audio>
+      <audio (play)="play($event)" [id]="question.src.toString()" [src]="question.src" controls=false controlsList="nodownload" type="audio/wav"></audio>
       <app-dynamic-form-question [question]="question" [form]="form"></app-dynamic-form-question>
     </div>
 
