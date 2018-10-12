@@ -2,15 +2,17 @@ import { Injectable } from '@angular/core';
 import {AngularFirestore, AngularFirestoreDocument} from 'angularfire2/firestore';
 import {IntellEval} from './intell-eval';
 import {User} from './user';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadDataService {
   data;
-  constructor(public afs: AngularFirestore) {
+  constructor(public afs: AngularFirestore, private router: Router) {
   }
   async addEval(evaluation) {
+    this.router.navigate(['/thankyou']);
     console.log('In addEval');
     console.log(evaluation);
     const user_obv = this.afs.doc<User>('users/' + evaluation.workerID).valueChanges();
@@ -26,7 +28,7 @@ export class UploadDataService {
         resolve(data);
       });
     });
-    const user = await promise;
+    const user = await promise as User;
     console.log('the user');
     console.log(user);
     const evalID = evaluation.HIT_ID + evaluation.workerID;

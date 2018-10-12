@@ -15,7 +15,7 @@ import {TextboxQuestion} from '../providers/textbox-question';
   styleUrls: ['./dynamic-eval-page.component.css'],
   providers: [QuestionControlService]
 })
-export class DynamicEvalPageComponent implements OnInit, OnChanges {
+export class DynamicEvalPageComponent implements OnInit {
   @Input() questions: QuestionBase<TextboxQuestion>[] = [];
   @Input() model: IntellEval;
   form: FormGroup;
@@ -58,11 +58,11 @@ export class DynamicEvalPageComponent implements OnInit, OnChanges {
     this.model.transcriptions = this.transcriptions;
     console.log(this.model);
     this.ups.addEval(this.model);
-    this.router.navigate(['/thankyou']);
   }
-  ngOnChanges() {
+ /* ngOnChanges() {
     this.onChanges();
   }
+  */
   play(event) {
     const audioID = event.target.id;
     console.log(audioID);

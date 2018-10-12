@@ -41,7 +41,12 @@ export class BatchGuard implements CanActivate {
             if (activate) {
               console.log('ACTIVATE');
             } else {
-              this.router.navigate(['/noaccess']);
+              console.log(this.router.url);
+              if (this.router.url === '/thankyou') {
+                this.router.navigate(['/thankyou']);
+              } else {
+                this.router.navigate(['/noaccess']);
+              }
             }
             resolve(activate);
           });
