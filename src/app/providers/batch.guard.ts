@@ -17,10 +17,10 @@ export class BatchGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     console.log('in batch guard');
     let urlParams = new URLSearchParams(window.location.search);
-    let batchUrl = urlParams.get('batch');
+    let batchUrl = urlParams.get('task');
     if (batchUrl === null) {
       urlParams = new URLSearchParams(urlParams.get('returnUrl').split('?')[1]);
-      batchUrl = urlParams.get('batch');
+      batchUrl = urlParams.get('task');
     }
     console.log(batchUrl);
     let batchID = '';

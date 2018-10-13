@@ -8,6 +8,7 @@ import {AuthGuard} from './providers/auth.guard';
 import {BatchGuard} from './providers/batch.guard';
 import {ThankYouComponent} from './thank-you/thank-you.component';
 import {NoAccessComponent} from './no-access/no-access.component';
+import {RedirectComponent} from './redirect/redirect.component';
 
 const routes: Routes = [
   {path: 'evalpage', component: EvalpageComponent, canActivate: [AuthGuard, BatchGuard]},
@@ -15,11 +16,12 @@ const routes: Routes = [
   {path: 'login', component: LoginpageComponent},
   {path: 'intellevalform', component: IntellEvalFormComponent},
   {path: 'thankyou', component: ThankYouComponent},
-  {path: 'noaccess', component: NoAccessComponent}
+  {path: 'noaccess', component: NoAccessComponent},
+  {path: 'redirect', component: RedirectComponent}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'})],
   exports: [
     RouterModule
   ]

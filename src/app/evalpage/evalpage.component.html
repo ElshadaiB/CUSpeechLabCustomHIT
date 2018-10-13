@@ -13,6 +13,11 @@
     </ul>
   </div>
 </div>
-<div *ngIf="stranscriptions">
+<div class="reload">
+  <p>Evaluation tasks not showing yet? Please press this button to reload them!</p>
+<button (click)="refresh()">Reload Evals</button>
+</div>
+<div class="eval" *ngIf ="stranscriptions">
   <app-tester [transcriptions]="stranscriptions" [model]="model"></app-tester>
 </div>
+

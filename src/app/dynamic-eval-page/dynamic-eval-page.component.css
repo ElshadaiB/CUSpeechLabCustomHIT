@@ -19,3 +19,17 @@
 ::ng-deep audio {
   padding: 30px 0px;
 }
+button ::ng-deep {
+  margin-top: 15px;
+  font-family: "Times New Roman";
+  background-color: #669ed2;
+  border: none;
+  color: white;
+  font-weight: bold;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 10px;
+}

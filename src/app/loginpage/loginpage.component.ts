@@ -9,10 +9,11 @@ import {Router, ActivatedRoute} from '@angular/router';
 })
 export class LoginpageComponent implements OnInit {
   returnUrl: string;
-  constructor(public AfService: AfService, private router: Router, private route: ActivatedRoute ) { }
+  constructor(public af: AfService, private router: Router, private route: ActivatedRoute ) {
+    this.af.logout();
+  }
 
   ngOnInit() {
-    this.AfService.logout();
     console.log(this.route.snapshot.queryParams);
     console.log(this.route.snapshot.queryParams['returnUrl']);
     if (this.route.snapshot.queryParams['returnUrl'] === undefined) {
@@ -23,8 +24,8 @@ export class LoginpageComponent implements OnInit {
   }
   login() {
       console.log(this.returnUrl);
-      this.AfService.loginWithGoogle();
-      this.AfService.afAuth.auth.onAuthStateChanged(user => {
+      this.af.loginWithGoogle();
+      this.af.afAuth.auth.onAuthStateChanged(user => {
         if (user) {
           this.redirect(this.returnUrl);
         } else {
@@ -35,5 +36,11 @@ export class LoginpageComponent implements OnInit {
   redirect(url: string) {
     console.log('redirect called with param ' + url);
     this.router.navigateByUrl(url);
+    /*this.router.navigate(['/redirect'], {
+      queryParams: {
+        returnUrl: url
+      }
+    });
+    */
   }
 }
