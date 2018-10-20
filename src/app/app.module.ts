@@ -26,7 +26,6 @@ import { DynamicPairFormQuestionComponent } from './dynamic-pair-form-question/d
 import { PairEvalFormComponent } from './pair-eval-form/pair-eval-form.component';
 import { NoAccessComponent } from './no-access/no-access.component';
 import { ThankYouComponent } from './thank-you/thank-you.component';
-import { RedirectComponent } from './redirect/redirect.component';
 
 @NgModule({
   declarations: [
@@ -41,8 +40,7 @@ import { RedirectComponent } from './redirect/redirect.component';
     DynamicPairFormQuestionComponent,
     PairEvalFormComponent,
     NoAccessComponent,
-    ThankYouComponent,
-    RedirectComponent
+    ThankYouComponent
   ],
   imports: [
     BrowserModule,
