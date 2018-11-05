@@ -586,7 +586,6 @@ export class DynamicEvalPageComponent implements OnInit {
     tvalue = tvalue.replace(/\;/g, "፤");
     tvalue = tvalue.replace(/\:/g, "፥");
     tvalue = tvalue.replace(/\!/g, "፦");
-    tvalue = tvalue.replace(/\?/g, "፧");
     tvalue = tvalue.replace(/\//g, "፨");
 
     tvalue = tvalue.replace(/1/g, "፩");
